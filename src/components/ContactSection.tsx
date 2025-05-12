@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,12 +11,14 @@ const ContactSection = () => {
     name: "",
     phone: "",
     petType: "",
-    message: ""
+    message: "",
   });
-  
+
   const sectionRef = useRef<HTMLElement>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -33,7 +34,7 @@ const ContactSection = () => {
       name: "",
       phone: "",
       petType: "",
-      message: ""
+      message: "",
     });
   };
 
@@ -41,15 +42,16 @@ const ContactSection = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const elementsToAnimate = entry.target.querySelectorAll('.animate-on-scroll');
+          const elementsToAnimate =
+            entry.target.querySelectorAll(".animate-on-scroll");
           if (entry.isIntersecting) {
             elementsToAnimate.forEach((el) => {
-              el.classList.add('visible');
+              el.classList.add("visible");
             });
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (sectionRef.current) {
@@ -72,18 +74,20 @@ const ContactSection = () => {
       <div className="absolute bottom-0 right-0 opacity-10 -z-5">
         <Icon name="Dog" className="w-72 h-72 text-secondary" />
       </div>
-      
+
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
             <div className="animate-on-scroll">
               <h2 className="text-3xl md:text-4xl font-bold text-dark mb-6">
-                Свяжитесь с нами для <span className="text-primary">вызова ветеринара</span>
+                Свяжитесь с нами для{" "}
+                <span className="text-primary">вызова ветеринара</span>
               </h2>
               <p className="text-gray-600 mb-8">
-                Оставьте заявку, и мы оперативно свяжемся с вами для уточнения деталей вызова и определения удобного времени.
+                Оставьте заявку, и мы оперативно свяжемся с вами для уточнения
+                деталей вызова и определения удобного времени.
               </p>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-3 rounded-full mr-4">
@@ -92,11 +96,11 @@ const ContactSection = () => {
                   <div>
                     <h3 className="font-semibold text-lg">Телефон</h3>
                     <p className="text-primary hover:underline">
-                      <a href="tel:+79001234567">+7 (900) 123-45-67</a>
+                      <a href="tel:89043029179">8 904 302 91 79</a>
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-3 rounded-full mr-4">
                     <Icon name="Mail" className="h-5 w-5 text-primary" />
@@ -108,7 +112,7 @@ const ContactSection = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-3 rounded-full mr-4">
                     <Icon name="Clock" className="h-5 w-5 text-primary" />
@@ -116,76 +120,83 @@ const ContactSection = () => {
                   <div>
                     <h3 className="font-semibold text-lg">Время работы</h3>
                     <p className="text-gray-600">Ежедневно с 9:00 до 21:00</p>
-                    <p className="text-gray-600">Экстренные вызовы - круглосуточно</p>
+                    <p className="text-gray-600">
+                      Экстренные вызовы - круглосуточно
+                    </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-3 rounded-full mr-4">
                     <Icon name="MapPin" className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg">Зона обслуживания</h3>
-                    <p className="text-gray-600">Город и пригород в радиусе 30 км</p>
+                    <p className="text-gray-600">
+                      Город и пригород в радиусе 30 км
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             <div className="animate-on-scroll">
               <div className="bg-white p-8 rounded-xl shadow-xl">
                 <h3 className="text-2xl font-bold mb-6">Заполните форму</h3>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <Label htmlFor="name">Ваше имя</Label>
-                    <Input 
-                      id="name" 
-                      name="name" 
-                      placeholder="Введите ваше имя" 
+                    <Input
+                      id="name"
+                      name="name"
+                      placeholder="Введите ваше имя"
                       value={formData.name}
                       onChange={handleChange}
                       required
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="phone">Номер телефона</Label>
-                    <Input 
-                      id="phone" 
-                      name="phone" 
-                      placeholder="+7 (___) ___-__-__" 
+                    <Input
+                      id="phone"
+                      name="phone"
+                      placeholder="+7 (___) ___-__-__"
                       value={formData.phone}
                       onChange={handleChange}
                       required
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="petType">Вид животного</Label>
-                    <Input 
-                      id="petType" 
-                      name="petType" 
-                      placeholder="Кошка, собака, хомяк и т.д." 
+                    <Input
+                      id="petType"
+                      name="petType"
+                      placeholder="Кошка, собака, хомяк и т.д."
                       value={formData.petType}
                       onChange={handleChange}
                       required
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="message">Опишите проблему</Label>
-                    <Textarea 
-                      id="message" 
-                      name="message" 
-                      placeholder="Что беспокоит вашего питомца?" 
+                    <Textarea
+                      id="message"
+                      name="message"
+                      placeholder="Что беспокоит вашего питомца?"
                       rows={4}
                       value={formData.message}
                       onChange={handleChange}
                     />
                   </div>
-                  
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-primary hover:bg-primary/90"
+                  >
                     Отправить заявку
                   </Button>
                 </form>
